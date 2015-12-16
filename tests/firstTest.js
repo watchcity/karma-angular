@@ -9,7 +9,7 @@ describe("First Test", function () {
 
 	it("increments value", function () {
 		// Act (attempt the operation)
-		counter++;
+		counter--;
 		// Assert (verify the result)
 		expect(counter).toEqual(1);
 	})

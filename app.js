@@ -1,8 +1,16 @@
-var app = angular.module("exampleApp", []);
+var app = angular.module("exampleApp", ['ui.date']);
 
 app.controller("defaultCtrl", function ($scope, $http, $interval, $timeout, $log) {
-	
+
 	$scope.counter = 0;
+
+	$scope.dateOptions = {
+	    changeYear: true,
+	    changeMonth: true,
+	    yearRange: '1900:-0'
+	    };
+
+	    // $scope.myDate = "";
 
 	$scope.intervalCounter = 0;
 	$scope.timerCounter = 0;
@@ -28,12 +36,12 @@ app.controller("defaultCtrl", function ($scope, $http, $interval, $timeout, $log
 
 app.filter("labelCase", function () {
 	return function (value, reverse) {
-		
+
 		if (angular.isString(value)) {
-			
+
 			var intermediate = reverse ? value.toUpperCase() : value.toLowerCase();
-	
-			return (reverse ? 
+
+			return (reverse ?
 						intermediate[0].toLowerCase() :
 						intermediate[0].toUpperCase())
 					+ intermediate.substr(1);

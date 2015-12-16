@@ -9,7 +9,7 @@ describe("Controller Test", function () {
 	beforeEach(angular.mock.inject(function ($httpBackend) {
 		backend = $httpBackend;
 		backend.expect("GET", "productData.json").respond([
-				{ "name": "Apples", "category": "Fruit", "price": 1.20 },
+				{ "name": "Apples", "category": "Fruit", "price": 1.11},
 				{ "name": "Bananas", "category": "Fruit", "price": 2.42 },
 				{ "name": "Pears", "category": "Fruit", "price": 2.02}
 			]);
@@ -17,7 +17,7 @@ describe("Controller Test", function () {
 
 	beforeEach(angular.mock.inject(function ($controller, $rootScope,
 		 	$http, $interval, $timeout, $log) {
-		
+
 		mockScope = $rootScope.$new();
 		mockInterval = $interval;
 		mockTimeout = $timeout;
@@ -29,17 +29,17 @@ describe("Controller Test", function () {
 			$timeout: mockTimeout,
 			$log: mockLog
 		});
-		
+
 		// send the canned responses to our requests
-		// Calling the flush method resolves the promise returned by the $http service and 
+		// Calling the flush method resolves the promise returned by the $http service and
 		// executes the success function defined by the controller.
-		backend.flush();  
+		backend.flush();
 	}));
 
 	// Act and Assess
 
 	it("Creates variable", function () {
-		expect(mockScope.counter).toEqual(0);
+		expect(mockScope.counter).toEqual(1);
 	});
 
 	it("Increments counter", function () {
@@ -77,6 +77,11 @@ describe("Controller Test", function () {
 	it("Writes log messages", function () {
 		expect(mockLog.log.logs.length).toEqual(1);
 	});
+
+	it("Reads the default date of the Date Picker", function () {
+		expect(mockScope.myDate).toEqual('Bob');
+	})
+
 
 
 });
